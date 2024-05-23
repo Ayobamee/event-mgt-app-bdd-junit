@@ -17,8 +17,21 @@ public class HomePage {
 
     private static WebDriver driver;
 
-    private By logoutBtn = By.xpath("//a[contains(text(), 'Log Out')]");
+    private By logoImage = By.xpath(" //div[@class='logo mr-3']");
+    private By homeLink = By.xpath("//a[contains(@class, 'active') and contains(@href, 'home')]");
+    private By eventLink = By.cssSelector("a[href=\"https://staging.liveet.co/my-events\"]");
+    private By favouriteLink = By.cssSelector("a[href=\"https://staging.liveet.co/favourite\"]");
+    private By invitationLink = By.cssSelector("a[href=\"https://staging.liveet.co/invitation\"]");
+    private By profileImg = By.cssSelector("a[href=\"https://staging.liveet.co/profile\"]");
     private By createEventBtn = By.xpath("//a[contains(text(), 'Create Event')]");
+    private By logoutBtn = By.xpath("//a[contains(text(), 'Log Out')]");
+    private By allEventsList = By.cssSelector("a[href=\"#all-events\"]");
+    private By privateEventsList = By.cssSelector("a[href=\"#private-events\"]");
+    private By publicEventsList = By.cssSelector("a[href=\"#public-events\"]");
+    private By footerLogoImage = By
+            .cssSelector("img[src=\"https://staging.liveet.co/assets/images/logo/logo-secondary.svg\"]");
+    private By termsAndConditionLink = By.xpath("//a[contains(text(), ' Terms and Conditions ')]");
+    private By privacyAndPolicyLink = By.cssSelector("a[href=\"https://liveet.gitbook.io/docs/privacy\"]");
 
     @SuppressWarnings("static-access")
     public HomePage(WebDriver driver) {
@@ -40,6 +53,8 @@ public class HomePage {
         Assert.assertEquals("URL does not match expected value", expectedUrl, currentUrl);
     }
 
+    // For validiating multiple element(s)
+
     public void checkElementsVisibility(WebDriver driver, List<By> locators) {
         for (By locator : locators) {
             try {
@@ -55,15 +70,30 @@ public class HomePage {
         }
     }
 
+    // For validiating multiple elements
+
     public void verifyOtherHomePageElements() {
         // List of locators to check
         List<By> locators = List.of(
-                logoutBtn,
-                createEventBtn
-        );
+                logoImage, homeLink, eventLink, favouriteLink, invitationLink, profileImg, createEventBtn, logoutBtn,
+                allEventsList, privateEventsList, publicEventsList, footerLogoImage, termsAndConditionLink,
+                privacyAndPolicyLink);
         checkElementsVisibility(driver, locators);
 
     }
+
+    // For validiating one element
+    public boolean isElementPresent(WebDriver driver, By locator) {
+        try {
+            driver.findElement(locator);
+            return true; // Element is present
+        } catch (NoSuchElementException e) {
+            return false; // Element is not present
+        }
+    }
+
+    // xpath selector
+    /* //input[@id='username'] */
 
     public void closeBrowser() {
 
