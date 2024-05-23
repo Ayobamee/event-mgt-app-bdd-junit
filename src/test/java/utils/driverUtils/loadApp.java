@@ -56,7 +56,7 @@ options.addArguments("--disable-dev-shm-usage");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         // Open the quales app home page.
-        driver.get("https://academy.quales.tech");
+        driver.get("https://staging.liveet.co/");
         System.out.println("The home page has been opened");
 
         return driver;
