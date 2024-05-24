@@ -1,8 +1,12 @@
 package pages;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.WebDriver;
+
+import utils.filereader.readProperties;
 
 public class LoginPage {
 
@@ -44,16 +48,14 @@ public class LoginPage {
         driver.findElement(secondContinueBtn).click();
     }
 
-    // public void login() throws IOException {
-    // readProperties readTestData = new readProperties();
-    // driver.findElement(signInBtn).click();
-    // driver.findElement(emailField).sendKeys((String) readTestData.getUsername());
-    // driver.findElement(passwordField).sendKeys((String)
-    // readTestData.getPassword());
-    // driver.findElement(loginBtn).click();
-    // System.out.println("Login is successful");
-    // }
-
-  
+    public void performLoginAction(WebDriver driver) throws IOException {
+        readProperties readTestData = new readProperties();
+        clickLoginRegisterButton();
+        enterPhoneNumber((String) readTestData.getUsername());
+        clickFirstContinueButton();
+        enterPassword((String) readTestData.getPassword());
+        clickSecondContinueButton();
+        System.out.println("Login is successful");
+    }
 
 }

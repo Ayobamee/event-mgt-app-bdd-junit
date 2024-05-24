@@ -95,6 +95,11 @@ public class HomePage {
     // xpath selector
     /* //input[@id='username'] */
 
+    public void createEvent() {
+        driver.findElement(createEventBtn).click();
+
+    }
+
     public void closeBrowser() {
 
         driver.quit();
